@@ -18,24 +18,16 @@
     "nohoist": []
   },
   "scripts": {
-    "build": "echo 'ERROR: Please specify environment by running either build:external or build:internal. This will set the correct environment variable for the build.'",
-    "build:packages": "lerna run build --stream --prefix --npm-client yarn",
-    "build:external": "rm -rf public && yarn build:packages && ./tasks/build.sh --env external",
-    "build:internal": "rm -rf public && yarn build:packages && ./tasks/build.sh --env internal",
+    "build": "rm -rf public && gatsby build",
     "serve": "gatsby serve",
-    "clean": "lerna clean --yes && rm -rf build && rm -rf node_modules",
     "clean:cache": "rm -rf .cache",
-    "dev": "yarn clean:cache && yarn dev:external",
-    "dev:external": "./tasks/build-timestamp.sh && cross-env GATSBY_CARBON_ENV=external gatsby develop",
-    "dev:internal": "./tasks/build-timestamp.sh && cross-env GATSBY_CARBON_ENV=internal gatsby develop",
+    "dev": "./tasks/build-timestamp.sh && gatsby develop",
     "format": "prettier --write \"**/*.{scss,css,js,md}\"",
     "format:diff": "prettier --list-different \"**/*.{scss,css,js,md}\"",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "storybook": "start-storybook -p 9001 -s ./static -c .storybook",
-    "storybook:build": "build-storybook -c .storybook -o public/storybook"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@carbon/addons-website": "^0.0.1-alpha.17",
+    "@carbon/addons-website": "^0.0.1-alpha.18",
     "@carbon/icons-react": "0.0.1-alpha.31",
     "@mdx-js/mdx": "^0.16.6",
     "@mdx-js/tag": "^0.16.6",
